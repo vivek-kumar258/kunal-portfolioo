@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kunal Vishwakarma | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #00d4ff;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --dim: #94a3b8;
+            --nav-bg: rgba(15, 23, 42, 0.8);
+        }
+
+        /* --- Global Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- CONTAINER --- */
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            padding: 140px 20px 80px;
+            border-bottom: 1px solid #334155;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            background: linear-gradient(to right, #00d4ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--dim);
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 80px 0;
+        }
+
+        h2 {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        /* --- SKILLS --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #334155;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.1);
+        }
+
+        /* --- INFO FLEX --- */
+        .info-flex {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .info-column {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .edu-item {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .edu-item:hover {
+            border-left-color: var(--primary);
+            background: #243046;
+        }
+
+        .edu-item h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* --- SOFTWARE LIST --- */
+        .software-list {
+            list-style: none;
+        }
+
+        .software-list li {
+            background: var(--card);
+            margin-bottom: 12px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .software-list li::before {
+            content: "✦";
+            color: var(--primary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #334155;
+            color: var(--dim);
+            font-size: 0.85rem;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: 0.8rem; }
+            header { padding-top: 100px; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .skills-grid { grid-template-columns: 1fr; }
+            .nav-container { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">KV.</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Kunal Vishwakarma</h1>
+            <p class="subtitle">Creative Video Editor & Graphic Designer</p>
+            <p style="margin-top:20px; max-width: 600px; margin-inline: auto;">
+                Crafting engaging visuals and high-impact content for brands and social media.
+            </p>
+        </header>
+
+        <section id="about" class="reveal">
+            <h2>About Me</h2>
+            <p>
+                I am a passionate Video Editor and Graphic Designer who specializes in creating
+                engaging, high-quality content for social media and brands. I focus on storytelling,
+                smooth transitions, and eye-catching visuals.
+            </p>
+        </section>
+
+        <section id="expertise" class="reveal">
+            <h2>Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">Video Editing</div>
+                <div class="skill-card">Motion Graphics</div>
+                <div class="skill-card">Color Grading</div>
+                <div class="skill-card">Typography</div>
+                <div class="skill-card">Social Media Design</div>
+                <div class="skill-card">Storytelling</div>
+            </div>
+        </section>
+
+        <div class="info-flex">
+            <section id="education" class="info-column reveal">
+                <h2>Education</h2>
+                <div class="edu-item">
+                    <h3>B.Com (Graduate)</h3>
+                    <p>Commerce Stream</p>
+                </div>
+                <div class="edu-item">
+                    <h3>12th Pass</h3>
+                    <p>St. Brij Mohan Lal Senior Secondary School</p>
+                </div>
+                <div class="edu-item">
+                    <h3>Design Certification</h3>
+                    <p>MAAC - South Extension</p>
+                </div>
+            </section>
+
+            <section class="info-column reveal">
+                <h2>Tools & Software</h2>
+                <ul class="software-list">
+                    <li>Adobe Premiere Pro</li>
+                    <li>Adobe After Effects</li>
+                    <li>Adobe Photoshop</li>
+                    <li>Adobe Illustrator</li>
+                </ul>
+            </section>
+        </div>
+
+        <footer>
+            © 2026 Kunal Vishwakarma | Portfolio
+        </footer>
+    </div>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // To check on load
+        reveal();
+    </script>
+
+</body>
+</html>
